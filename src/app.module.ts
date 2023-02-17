@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -17,11 +18,12 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         username: configService.get('MYSQLUSER') || 'root',
         password: configService.get('MYSQLPASSWORD') || '22022202',
         database: configService.get('MYSQLDATABASE') || 'paulo',
-        entities: [],
+        autoLoadEntities: true,
         synchronize: true,
       }),
       inject: [ConfigService],
     }),
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

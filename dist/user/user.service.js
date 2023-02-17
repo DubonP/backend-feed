@@ -22,7 +22,10 @@ let UserService = class UserService {
         this.userRepository = userRepository;
     }
     async all() {
-        return await this.userRepository.find();
+        return this.userRepository.find();
+    }
+    async create(data) {
+        return this.userRepository.save(data);
     }
 };
 UserService = __decorate([

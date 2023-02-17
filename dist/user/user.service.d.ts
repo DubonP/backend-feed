@@ -4,4 +4,5 @@ export declare class UserService {
     private readonly userRepository;
     constructor(userRepository: Repository<User>);
     all(): Promise<User[]>;
+    create(data: any): Promise<User>;
 }
